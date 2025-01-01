@@ -21,9 +21,9 @@ public class OrderDetailEntity {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private ProductEntity product;
+    private ProductEntity productEntity;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private OrderEntity order;
+    private OrderEntity orderEntity;
 }

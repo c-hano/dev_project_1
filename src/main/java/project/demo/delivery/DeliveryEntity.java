@@ -1,4 +1,4 @@
-package project.demo.entity;
+package project.demo.delivery;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Delivery {
+public class DeliveryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

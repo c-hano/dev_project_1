@@ -1,14 +1,16 @@
-package project.demo.entity;
+package project.demo.order_detail;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import project.demo.product.ProductEntity;
+import project.demo.order.OrderEntity;
 
 @Entity
 @Getter
 @Setter
 
-public class OrderDetail {
+public class OrderDetailEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +21,9 @@ public class OrderDetail {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product product;
+    private ProductEntity product;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
-    private Order order;
+    private OrderEntity order;
 }

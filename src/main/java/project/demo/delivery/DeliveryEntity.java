@@ -14,7 +14,7 @@ public class DeliveryEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int delivery_id;
+    private Long delivery_id;
 
     private int delivery_number;
     private String delivery_company;

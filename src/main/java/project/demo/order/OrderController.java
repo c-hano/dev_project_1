@@ -2,25 +2,32 @@ package project.demo.order;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import project.demo.product.ProductEntity;
 import project.demo.product.ProductRepository;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/orders")
 public class OrderController {
 
-    private final ProductRepository productRepository;
+    private final OrderService orderService;
 
-    public OrderController(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public OrderController(OrderService orderService) {
+
+        this.orderService = orderService;
     }
 
-    @GetMapping("/order")
-    public String showOrderPage(Model model) {
-        List<ProductEntity> products = productRepository.findAll();
-        model.addAttribute("products", products);
-        return "order";
+    //주문 목록 조회
+    @GetMapping
+    public List<OrderEntity> getAllOrders() {
+        return orderService.getAllOrders();
+    }
+
+    //주문 생성
+    @PostMapping
+    public OrderEntity createOrder(@RequestBody OrderEntity order) {
+        return orderService.createOrder(order);
     }
 }

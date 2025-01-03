@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Order Details</h1>
+<h2>Order ID: <span th:text="${order.order_id}"></span></h2>
+<p>Email: <span th:text="${order.customer_email}"></span></p>
+<p>Status: <span th:text="${order.order_state}"></span></p>
+<p>Total Price: <span th:text="${order.total_price}"></span></p>
+
+<h2>Products</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="detail : ${details}">
+        <td th:text="${detail.productEntity.product_name}"></td>
+        <td th:text="${detail.product_quantity}"></td>
+        <td th:text="${detail.order_price}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/orders">Back to Orders</a>
+</body>
+</html>

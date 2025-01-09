@@ -2,6 +2,8 @@ package com.example.dev_project_1.delivery.service;
 
 import com.example.dev_project_1.delivery.model.Delivery;
 import com.example.dev_project_1.delivery.repository.DeliveryRepository;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,11 @@ public class DeliveryService {
                 deliveryRepository.save(delivery);
             }
         });
+    }
+
+    public Delivery findById(Long deliveryId) {
+        return deliveryRepository.findById(deliveryId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid delivery ID: " + deliveryId));
     }
 }
 

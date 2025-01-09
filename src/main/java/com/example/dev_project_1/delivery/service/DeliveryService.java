@@ -15,8 +15,8 @@ public class DeliveryService {
         this.deliveryRepository = deliveryRepository;
     }
 
-    @Scheduled(cron = "0 0 14 * * ?")
     //14시에 배송 상품들 일괄처리
+    @Scheduled(cron = "0 0 14 * * ?")
     public void updateDeliveryStatus() {
         var deliveries = deliveryRepository.findAll();
         deliveries.forEach(delivery -> {
@@ -26,12 +26,14 @@ public class DeliveryService {
             }
         });
     }
+
     // 배송 ID로 해당 상품 배송 정보 조회
     public Delivery findById(Long deliveryId) {
         return deliveryRepository.findById(deliveryId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid delivery ID: " + deliveryId));
     }
 
+    // 운송장 번호 생성 : 랜덤한 12개의 숫자 생성
     public String generateRandomTrackingNumber() {
         Random random = new Random();
         StringBuilder trackingNumber = new StringBuilder();
@@ -41,7 +43,7 @@ public class DeliveryService {
         return trackingNumber.toString();
     }
 
-    // 랜덤한 두 글자의 한글을 생성하는 메서드
+    // 운송 회사 생성 : 랜덤한 두 글자의 한글 + 택배를 생성하는 메서드
     public String generateRandomKoreanName() {
         Random random = new Random();
         char firstChar = (char) (random.nextInt(11172) + 44032); // 유니코드 한글 범위: 0xAC00 ~ 0xD7A3

@@ -17,8 +17,8 @@ public class DeliveryController {
     }
 
     // 배송 상태 확인 페이지
-    @GetMapping
-    public String deliveryInfoPage(@RequestParam Long deliveryId, Model model) {
+    @GetMapping("{deliveryId}")
+    public String deliveryInfoPage(@PathVariable Long deliveryId, Model model) {
         // deliveryId를 통해 배송 정보를 조회
         Delivery delivery = deliveryService.findById(deliveryId);
         model.addAttribute("delivery", delivery);

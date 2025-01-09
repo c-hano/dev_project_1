@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배송 상태 확인</title>
+</head>
+<body>
+<h1>배송 상태 확인</h1>
+<p><strong>배송 상태:</strong> <span th:text="${delivery.status}"></span></p>
+<p><strong>배송 ID:</strong> <span th:text="${delivery.deliveryId}"></span></p>
+<p><strong>배송 번호:</strong> <span th:text="${delivery.deliveryNumber}"></span></p>
+<p><strong>배송 회사:</strong> <span th:text="${delivery.deliveryCompany}"></span></p>
+</body>
+</html>

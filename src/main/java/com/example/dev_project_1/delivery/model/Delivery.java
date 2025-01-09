@@ -14,15 +14,18 @@ public class Delivery {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private Integer deliveryNumber;
     private String deliveryCompany;
 
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatus status;
 
-    //deliveryId 하나 당 여러개의 Order 정보가 필요하다
     @OneToMany(mappedBy= "deliveryId", cascade = CascadeType.REMOVE)
-    //해당 Order이 사라지면 그에 대응하는 deliveryId도 사라져야 한다. 이렇게 하는게 맞는지..?
     private List<Order> orderList;
 
+    public enum DeliveryStatus {
+        PREPARING, SHIPPING, DELIVERED
+    }
 }

@@ -16,7 +16,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deliveryId;
 
-    private Integer deliveryNumber;
+    private String deliveryNumber;
     private String deliveryCompany;
 
     @Enumerated(EnumType.STRING)

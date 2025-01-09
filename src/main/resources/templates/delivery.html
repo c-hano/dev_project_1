@@ -7,11 +7,12 @@
 </head>
 <body>
 <h1>배송 상태 확인</h1>
-<p><strong>배송 상태:</strong> <span th:text="${delivery.status}"></span></p>
+<p><strong>배송 상태:</strong> <span th:text="${deliveryStatus}"></span></p>
 <p><strong>운송장 번호:</strong> <span th:text="${delivery.deliveryNumber}"></span></p>
 <p><strong>택배사:</strong> <span th:text="${delivery.deliveryCompany}"></span></p>
 
-<!-- 주문한 상품의 정보 표시, deliveryStatus는 빠져야함.-->
+<!-- 상품 정보 표시 (주석 처리) -->
 
 </body>
 </html>
+

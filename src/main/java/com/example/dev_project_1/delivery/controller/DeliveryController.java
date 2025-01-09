@@ -16,13 +16,15 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    // 배송 상태 확인 페이지
-    @GetMapping("{deliveryId}")
+    // 배송 정보 페이지
+    @GetMapping("/{deliveryId}")
     public String deliveryInfoPage(@PathVariable Long deliveryId, Model model) {
-        // deliveryId를 통해 배송 정보를 조회
-        Delivery delivery = deliveryService.findById(deliveryId);
+        Delivery delivery = deliveryService.getDeliveryById(deliveryId); // 서비스 계층을 통해 배송 정보 조회
+        String deliveryStatus = deliveryService.getDeliveryStatus(delivery); // 배송 상태 조회
+
         model.addAttribute("delivery", delivery);
-        return "delivery";
+        model.addAttribute("deliveryStatus", deliveryStatus);
+        return "delivery"; // 배송 정보 HTML 반환
     }
 }
 

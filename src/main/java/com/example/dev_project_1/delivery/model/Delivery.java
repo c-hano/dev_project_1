@@ -15,17 +15,14 @@ public class Delivery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long deliveryId;
+    private Long deliveryId; // 배송 ID
 
-    private String deliveryNumber;
-    private String deliveryCompany;
-
-    @Enumerated(EnumType.STRING)
-    private DeliveryStatus status;
+    private String deliveryNumber; // 운송장 번호
+    private String deliveryCompany; // 택배사
 
     @OneToOne
-    @JoinColumn(name ="order")
-    private Order orders;
+    @JoinColumn(name ="order_id")
+    private Order order; //주문 정보와 1:1 관계
 
     public enum DeliveryStatus {
         PREPARING, SHIPPING, DELIVERED

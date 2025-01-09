@@ -13,8 +13,8 @@ import java.util.List;
 public class Delivery {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long deliveryId;
 
     private Integer deliveryNumber;
     private String deliveryCompany;
@@ -22,8 +22,9 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
-    @OneToMany(mappedBy= "deliveryId", cascade = CascadeType.REMOVE)
-    private List<Order> orderList;
+    @OneToOne
+    @JoinColumn(name = "order_id")
+    private Order orderList;
 
     public enum DeliveryStatus {
         PREPARING, SHIPPING, DELIVERED

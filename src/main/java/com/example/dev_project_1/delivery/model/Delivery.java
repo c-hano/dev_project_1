@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
+
 @Entity
 @Getter
 @Setter
@@ -23,8 +24,8 @@ public class Delivery {
     private DeliveryStatus status;
 
     @OneToOne
-    @JoinColumn(name = "order_id")
-    private Order orderList;
+    @JoinColumn(name ="order")
+    private Order orders;
 
     public enum DeliveryStatus {
         PREPARING, SHIPPING, DELIVERED

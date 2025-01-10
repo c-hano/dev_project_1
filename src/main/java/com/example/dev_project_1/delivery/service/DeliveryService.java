@@ -67,6 +67,7 @@ public class DeliveryService {
                 order.setOrderStatus(OrderStatus.PREPARING); // "배송 중"으로 변경
             }
         }
+        deliveryRepository.saveAll(deliveries);
     }
 }
 

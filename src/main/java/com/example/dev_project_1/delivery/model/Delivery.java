@@ -24,7 +24,4 @@ public class Delivery {
     @JoinColumn(name ="order_id")
     private Order order; //주문 정보와 1:1 관계
 
-    public enum DeliveryStatus {
-        PREPARING, SHIPPING, DELIVERED
-    }
 }

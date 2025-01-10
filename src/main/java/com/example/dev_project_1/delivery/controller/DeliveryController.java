@@ -21,6 +21,7 @@ public class DeliveryController {
         this.orderService = orderService;
     }
 
+    //테스트용 코드입니다.
     @GetMapping("/create-sample")
     public String createSampleData() {
         Order order = new Order();

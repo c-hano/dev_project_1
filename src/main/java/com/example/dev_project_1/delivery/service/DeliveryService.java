@@ -18,10 +18,10 @@ public class DeliveryService {
         this.deliveryRepository = deliveryRepository;
     }
 
-    // 특정 배송 ID로 배송 정보 조회
+    //해당 배송 ID가 없을 경우 출력 오류 메세지 수정
     public Delivery getDeliveryById(Long deliveryId) {
         return deliveryRepository.findById(deliveryId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid delivery ID: " + deliveryId));
+                .orElseThrow(() -> new IllegalArgumentException("Delivery ID " + deliveryId + " does not exist. Please ensure the ID is correct."));
     }
 
     // 배송 상태 가져오기

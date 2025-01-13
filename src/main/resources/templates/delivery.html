@@ -3,153 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>배송 정보</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+    <title>Grids & Circle</title>
+    <link href="@{/bootstrap.min.css}" rel="stylesheet">
     <style>
         body {
-            background-color: #dddddd; /* 전체 배경색 */
+            background-color: #dddddd;
         }
-
-        .header-container {
-            padding: 20px 0;
+        .main-title {
             text-align: center;
-            background-color: #dddddd; /* 제목 배경색 */
+            font-size: 32px;
+            font-weight: 600;
+            margin: 40px 0;
         }
-
-        .header-title {
-            font-size: 32px; /* 제목 폰트 크기 */
-            font-weight: bold; /* 제목 굵기 */
-            margin-bottom: 30px;
-        }
-
         .content-wrapper {
-            max-width: 1200px;
-            margin: 30px auto;
             display: flex;
-            flex-wrap: wrap; /* 반응형 */
             gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        .delivery-section, .summary-section {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
         .delivery-section {
             flex: 1.5;
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-
         .summary-section {
             flex: 1;
-            background: #f8f9fa; /* Summary 배경 */
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-
-        .status-title-container, .summary-title-container {
-            margin-bottom: 20px; /* 제목과 내용 간격 */
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
         }
-
-        .status-title, .summary-title {
-            font-weight: bold;
-            font-size: 18px; /* 글씨 크기 동일화 */
-            margin-bottom: 10px; /* 밑줄과 간격 */
-        }
-
-        .status-underline, .summary-underline {
-            border-top: 1px solid #e9ecef;
-            margin-top: 5px;
-        }
-
-        .status-container {
+        .status-circles {
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 30px; /* 동그라미와 아래 정보 간격 */
+            gap: 15px;
+            margin: 40px 0;
         }
-
-        .status-circle {
+        .circle {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            text-align: center;
-            line-height: 80px;
-            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            white-space: nowrap;
         }
-
-        .status-circle.active {
+        .circle.active {
             background-color: #0d6efd;
             color: white;
         }
-
-        .status-circle.inactive {
-            background-color: #e9ecef;
+        .circle.inactive {
+            background-color: #f8f9fa;
             color: black;
         }
-
-        .status-separator {
-            flex: 1;
-            text-align: center;
-            font-size: 36px;
-            line-height: 80px;
-            color: #6c757d;
+        .separator {
+            color: #dee2e6;
+            font-size: 24px;
         }
-
         .delivery-info p {
-            margin-bottom: 20px; /* 정보 간 간격 */
+            margin-bottom: 10px;
+        }
+        hr {
+            margin: 15px 0;
+            opacity: 0.1;
         }
     </style>
 </head>
 <body>
-
-<div class="header-container">
-    <h2 class="header-title">Grids & Circle</h2>
-</div>
+<h1 class="main-title">Grids & Circle</h1>
 
 <div class="content-wrapper">
+    <!-- 배송 상태 섹션 -->
     <div class="delivery-section">
-        <div class="status-title-container">
-            <div class="status-title">배송 상태</div>
-            <div class="status-underline"></div>
-        </div>
+        <h2 class="section-title">배송 상태</h2>
+        <hr>
 
-        <div class="status-container">
-            <div class="status-circle"
-                 th:classappend="${deliveryStatus == '주문 완료'} ? ' active' : ' inactive'"
-                 th:text="'주문 완료'"></div>
-            <div class="status-separator">. . .</div>
-            <div class="status-circle"
-                 th:classappend="${deliveryStatus == '배송 중'} ? ' active' : ' inactive'"
-                 th:text="'배송 중'"></div>
-            <div class="status-separator">. . .</div>
-            <div class="status-circle"
-                 th:classappend="${deliveryStatus == '배송 완료'} ? ' active' : ' inactive'"
-                 th:text="'배송 완료'"></div>
+        <div class="status-circles">
+            <div class="circle" th:classappend="${deliveryStatus == '주문 완료'} ? 'active' : 'inactive'">
+                주문 완료
+            </div>
+            <div class="separator">...</div>
+            <div class="circle" th:classappend="${deliveryStatus == '배송 중'} ? 'active' : 'inactive'">
+                배송 중
+            </div>
+            <div class="separator">...</div>
+            <div class="circle" th:classappend="${deliveryStatus == '배송 완료'} ? 'active' : 'inactive'">
+                배송 완료
+            </div>
         </div>
 
         <div class="delivery-info">
-            <p><strong>현재 상태:</strong> <span th:text="${deliveryStatus}"></span></p>
-            <p><strong>운송장 번호:</strong> <span th:text="${delivery.deliveryNumber}"></span></p>
-            <p><strong>택배사:</strong> <span th:text="${delivery.deliveryCompany}"></span></p>
+            <p><strong>현재 상태:</strong> <span th:text="${deliveryStatus}">주문 완료</span></p>
+            <p><strong>운송장 번호:</strong> <span th:text="${delivery.deliveryNumber}">073345696766</span></p>
+            <p><strong>택배사:</strong> <span th:text="${delivery.deliveryCompany}">닷컴택배</span></p>
         </div>
     </div>
 
+    <!-- Summary 섹션 -->
     <div class="summary-section">
-        <div class="summary-title-container">
-            <div class="summary-title">Summary</div>
-            <div class="summary-underline"></div>
-        </div>
-        <!--<p><strong>이메일:</strong> <span th:text="${order.customerEmail}"></span></p>
-        <p><strong>주소:</strong> <span th:text="${order.address.baseAddress}"></span></p>
-        <p><strong>상세 주소:</strong> <span th:text="${order.address.detailAddress}"></span></p>
-        <p><strong>우편번호:</strong> <span th:text="${order.address.zipCode}"></span></p>
-        <hr>-->
+        <h2 class="section-title">Summary</h2>
+        <hr>
         <p>매일 오후 2시 이전에 주문한 당일 배송 상품은 배송 시작 시간 1시간 전(오후 1시)까지 취소가 가능합니다.</p>
     </div>
 </div>
-
 </body>
 </html>

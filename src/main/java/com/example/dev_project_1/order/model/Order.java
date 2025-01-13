@@ -16,6 +16,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId; // 주문 ID
+
+    @Column(nullable = false)
     private String customerEmail; // 고객 이메일
 
     @Embedded
@@ -30,7 +32,7 @@ public class Order {
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Delivery delivery; // 배송 정보와 1:1 관계
 
-    public Order () {
+    public Order() {
         this.orderCreatedAt = LocalDateTime.now(); // 생성시 기본 값으로 현재 시간 설정
         this.orderStatus = OrderStatus.ORDERED; // 기본 상태는 "주문 완료"
     }

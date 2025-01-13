@@ -4,6 +4,8 @@ import com.example.dev_project_1.delivery.model.Delivery;
 import com.example.dev_project_1.delivery.repository.DeliveryRepository;
 import com.example.dev_project_1.order.model.Order;
 import com.example.dev_project_1.order.model.OrderStatus;
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +13,10 @@ import java.util.List;
 import java.util.Random;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class DeliveryService {
     private final DeliveryRepository deliveryRepository;
-
-    public DeliveryService(DeliveryRepository deliveryRepository) {
-        this.deliveryRepository = deliveryRepository;
-    }
 
     //해당 배송 ID가 없을 경우 출력 오류 메세지 수정
     public Delivery getDeliveryById(Long deliveryId) {
@@ -58,6 +58,7 @@ public class DeliveryService {
 
     // 매일 14시에 "주문 완료" 상태를 "배송 중"으로 업데이트
     @Scheduled(cron = "0 0 14 * * ?")
+    @Transactional
     public void updateDeliveryStatus() {
         List<Delivery> deliveries = deliveryRepository.findAll();
         for (Delivery delivery : deliveries) {

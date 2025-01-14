@@ -23,7 +23,7 @@ public class OrderController {
     public String showEmailInputPage(Model model) {
         model.addAttribute("emailForm", new EmailForm());
         model.addAttribute("error", false);
-        return "email_input";
+        return "customerLogin";
     }
 
     @PostMapping("/check")
@@ -31,7 +31,7 @@ public class OrderController {
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             // 유효성 검증 실패
-            return "email_input";
+            return "customerLogin";
         }
 
         String email = emailForm.getEmail();
@@ -43,7 +43,7 @@ public class OrderController {
         } else {
             // 이메일이 없으면 에러 메시지와 함께 이메일 입력 페이지를 다시 렌더링
             model.addAttribute("error", true);
-            return "email_input";
+            return "customerLogin";
         }
     }
 }

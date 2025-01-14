@@ -1,4 +1,4 @@
-package com.example.dev_project_1.order.model;
+package com.example.dev_project_1.common.login.buyer.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

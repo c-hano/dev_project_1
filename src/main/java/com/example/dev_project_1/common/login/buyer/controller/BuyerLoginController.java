@@ -1,6 +1,6 @@
-package com.example.dev_project_1.order.controller;
+package com.example.dev_project_1.common.login.buyer.controller;
 
-import com.example.dev_project_1.order.model.EmailForm;
+import com.example.dev_project_1.common.login.buyer.model.EmailForm;
 import com.example.dev_project_1.order.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/order")
 @RequiredArgsConstructor
-public class OrderController {
+public class BuyerLoginController {
 
     private final OrderService orderService;
 
@@ -23,7 +23,7 @@ public class OrderController {
     public String showEmailInputPage(Model model) {
         model.addAttribute("emailForm", new EmailForm());
         model.addAttribute("error", false);
-        return "customerLogin";
+        return "buyerLogin";
     }
 
     @PostMapping("/check")
@@ -31,7 +31,7 @@ public class OrderController {
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             // 유효성 검증 실패
-            return "customerLogin";
+            return "buyerLogin";
         }
 
         String email = emailForm.getEmail();
@@ -43,7 +43,7 @@ public class OrderController {
         } else {
             // 이메일이 없으면 에러 메시지와 함께 이메일 입력 페이지를 다시 렌더링
             model.addAttribute("error", true);
-            return "customerLogin";
+            return "buyerLogin";
         }
     }
 }

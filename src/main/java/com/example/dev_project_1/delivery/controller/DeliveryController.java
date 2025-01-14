@@ -3,7 +3,7 @@ package com.example.dev_project_1.delivery.controller;
 
 import com.example.dev_project_1.delivery.model.Delivery;
 import com.example.dev_project_1.delivery.service.DeliveryService;
-import com.example.dev_project_1.order.model.Address;
+import com.example.dev_project_1.common.Address;
 import com.example.dev_project_1.order.model.Order;
 import com.example.dev_project_1.order.service.OrderService;
 import org.springframework.stereotype.Controller;

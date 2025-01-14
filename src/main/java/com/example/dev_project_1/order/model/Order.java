@@ -1,5 +1,7 @@
 package com.example.dev_project_1.order.model;
 
+import com.example.dev_project_1.common.Address;
+import com.example.dev_project_1.common.OrderStatus;
 import com.example.dev_project_1.delivery.model.Delivery;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,11 +1,10 @@
-package com.example.dev_project_1.order.model;
+package com.example.dev_project_1.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Embeddable // order 클래스에서 사용되도록 선언
 @AllArgsConstructor // 모든 필드를 매개변수로 받는 생성자 생성

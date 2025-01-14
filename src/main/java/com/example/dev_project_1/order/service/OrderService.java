@@ -15,15 +15,8 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order saveOrder(Order order) {
-        return orderRepository.save(order);
+    public void saveOrder(Order order) {
+        orderRepository.save(order);
     }
 
-    public List<Order> findOrdersByEmail(String email) {
-        return orderRepository.findByCustomerEmail(email);
-    }
-    // 이메일 존재 여부 확인 메서드
-    public boolean isCustomerEmailExists(String email) {
-        return orderRepository.existsByCustomerEmail(email); // Repository 호출
-    }
 }

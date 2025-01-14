@@ -1,4 +1,4 @@
-package com.example.dev_project_1.order.model;
+package com.example.dev_project_1.common;
 
 import lombok.Getter;
 

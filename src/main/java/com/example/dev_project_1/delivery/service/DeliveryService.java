@@ -3,7 +3,7 @@ package com.example.dev_project_1.delivery.service;
 import com.example.dev_project_1.delivery.model.Delivery;
 import com.example.dev_project_1.delivery.repository.DeliveryRepository;
 import com.example.dev_project_1.order.model.Order;
-import com.example.dev_project_1.order.model.OrderStatus;
+import com.example.dev_project_1.common.OrderStatus;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;

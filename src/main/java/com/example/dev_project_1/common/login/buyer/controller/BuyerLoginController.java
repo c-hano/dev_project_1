@@ -1,6 +1,7 @@
 package com.example.dev_project_1.common.login.buyer.controller;
 
 import com.example.dev_project_1.common.login.buyer.model.EmailForm;
+import com.example.dev_project_1.common.login.buyer.service.OrderLoginService;
 import com.example.dev_project_1.order.service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -13,20 +14,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/buyer")
 @RequiredArgsConstructor
 public class BuyerLoginController {
 
-    private final OrderService orderService;
+    private final OrderLoginService orderLoginService;
 
-    @GetMapping("/check")
+    @GetMapping("/login")
     public String showEmailInputPage(Model model) {
         model.addAttribute("emailForm", new EmailForm());
         model.addAttribute("error", false);
         return "buyerLogin";
     }
 
-    @PostMapping("/check")
+    @PostMapping("/login")
     public String checkEmail(@Valid @ModelAttribute("emailForm") EmailForm emailForm,
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -35,7 +36,7 @@ public class BuyerLoginController {
         }
 
         String email = emailForm.getEmail();
-        boolean emailExists = orderService.isCustomerEmailExists(email);
+        boolean emailExists = orderLoginService.isCustomerEmailExists(email);
 
         if (emailExists) {
             // 이메일이 존재하면 /order/detail로 이동

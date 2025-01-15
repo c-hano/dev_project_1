@@ -18,7 +18,7 @@ public class SellerLoginController {
     private static final String ADMIN_PASSWORD = "1111"; // 관리자 비밀번호
 
     // 관리자 로그인 폼 페이지 매핑
-    @GetMapping("/admin/login")
+    @GetMapping("/seller/login")
     public String showPasswordForm(Model model) {
         model.addAttribute("passwordForm", new PasswordForm()); // 빈 PasswordForm 객체 전달
         model.addAttribute("error", false); // 초기 에러 메시지 상태
@@ -26,7 +26,7 @@ public class SellerLoginController {
     }
 
     // 비밀번호 확인 처리
-    @PostMapping("/admin/login")
+    @PostMapping("/seller/login")
     public String checkPassword(
             @Valid @ModelAttribute PasswordForm passwordForm, // 유효성 검사된 PasswordForm 객체
             BindingResult bindingResult,
